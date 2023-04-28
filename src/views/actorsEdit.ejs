@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor edit</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+      </figure>
+    <h1 class="titulo">Editar Actor</h1>
+    <br>
+    <section class="formulario">
+        <form action="/actors/update/<%= actor.id %>?_method=PUT" method="POST">
+            <label for="title">Name </label>
+            <p><input type="text" name="first_name" id="" value="<%= actor.first_name %>" required></p>
+            <label for="title">Surname </label>
+            <p><input type="text" name="last_name" id="" value="<%= actor.last_name %>" required></p>
+            <label for="rating">Rating </label>
+            <p><input type="number" step="0.01" name="rating" id="" value="<%= actor.rating %>" required> </p>
+            <label for="favorite_movie_id">Favorite movie </label>
+            <p>
+                <select name="favorite_movie_id" id="" required>
+                    <option value="" disabled selected>- select movie - </option>
+                    <% movies.forEach(movie => { %>
+                    <option value="<%= movie.id %>" <% if (actor.favorite_movie && actor.favorite_movie.id == movie.id) { %><%= 'selected' %><% }; %>><%= movie.title %></option>
+                    <% }); %>
+                </select>
+            </p>
+            <br>
+            <p> <button class="botonAgregar" type="submit">Editar</button>
+            
+            <a  class="botonVolver" href="/actors">Listado de Actores</a></p>
+        </form>
+    </section>
+    
+</body>
+
+</html>
